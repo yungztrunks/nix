@@ -8,6 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Feature modules
+      ./modules/hyprland.nix
+      ./modules/gaming.nix
+      ./modules/wine.nix
     ];
 
   # Bootloader.
@@ -85,7 +89,7 @@
   users.users.silver = {
     isNormalUser = true;
     description = "silver";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "input" "gamemode" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -97,6 +101,9 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # nix-ld: lets you run unpatched dynamic binaries (useful for dev tools)
+  programs.nix-ld.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -107,6 +114,12 @@
   #  wget
     git
     gh
+    playerctl           # Media key support (used by Hyprland keybindings)
+    brightnessctl       # Brightness control (used by hypridle)
+    pavucontrol         # PulseAudio / PipeWire volume control GUI
+
+    # Nerd fonts for terminal and Waybar
+    nerd-fonts.jetbrains-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
