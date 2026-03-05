@@ -117,9 +117,6 @@
     playerctl           # Media key support (used by Hyprland keybindings)
     brightnessctl       # Brightness control (used by hypridle)
     pavucontrol         # PulseAudio / PipeWire volume control GUI
-
-    # Nerd fonts for terminal and Waybar
-    nerd-fonts.jetbrains-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
