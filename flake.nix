@@ -20,7 +20,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.silver = import ./home/silver/base.nix;
+          home-manager.users.silver = import ./home/silver/default.nix;
         }
       ];
     };

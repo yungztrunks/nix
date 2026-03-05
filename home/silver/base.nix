@@ -6,6 +6,6 @@
 
   home.stateVersion = "25.11";
 
-  programs.git.enable = true;
-  programs.bash.enable = true;
+  # Let home-manager manage itself
+  programs.home-manager.enable = true;
 }
