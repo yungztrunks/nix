@@ -15,7 +15,7 @@ in
       gnumake
       gcc
       python3
-      # nvm
+      fnm
       bun
       uv
       nil
