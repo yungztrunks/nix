@@ -9,6 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./git.nix
+      ./modules/apps.nix
+      ./modules/development.nix
+      ./modules/gaming.nix
+      ./modules/windows-apps.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -95,19 +99,19 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  my.modules.normal.enable = true;
+  my.modules.develop.enable = true;
+  my.modules.gaming.enable = true;
+  my.modules.windowsApps.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    github-desktop
-    vscode
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
