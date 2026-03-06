@@ -26,7 +26,7 @@ in
       "l" = "ls -CF";
       "ls" = "ls --color=auto";
       
-      # Misc shortcuts
+      # grep
       "grep" = "grep --color=auto";
       "..=" = "cd ..";
       "...=" = "cd ../..";
