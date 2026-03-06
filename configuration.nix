@@ -45,8 +45,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  system.configurationRevision = builtins.readFile ./.git/HEAD;
-
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session. test
   services.xserver.enable = true;
