@@ -10,6 +10,8 @@ in
     environment.systemPackages = with pkgs; [
       htop
       fastfetch
+      # direnv
+      efibootmgr
     ];
   };
 }
