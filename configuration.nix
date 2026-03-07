@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./git.nix
       ./modules/apps.nix
+      ./modules/cli.nix
       ./modules/development.nix
       ./modules/gaming.nix
       ./modules/windows-apps.nix
@@ -104,6 +105,7 @@
   nixpkgs.config.allowUnfree = true;
 
   my.modules.normal.enable = true;
+  my.modules.cli.enable = true;
   my.modules.develop.enable = true;
   my.modules.gaming.enable = true;
   my.modules.windowsApps.enable = true;
