@@ -97,6 +97,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
+      kdePackages.partitionmanager
     #  thunderbird
     ];
   };
@@ -117,7 +118,7 @@
       # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wayland-utils
       wl-clipboard
-  #  wget
+      #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
