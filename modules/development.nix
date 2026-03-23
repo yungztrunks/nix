@@ -6,9 +6,10 @@ in
 {
   options.my.modules.develop.enable = lib.mkEnableOption "development tools";
 
-  options.vscode.enable = lib.mkEnableOption "vs code";
-
   config = lib.mkIf cfg.enable {
+
+    programs.vs-code.enable = true;
+
     environment.systemPackages = with pkgs; [
       gh
       github-desktop
