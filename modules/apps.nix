@@ -8,10 +8,10 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.firefox.enable = lib.mkDefault true;
+    programs.obs-studio.enable = true;
 
     environment.systemPackages = with pkgs; [
       spotify
-      obs-studio
       vlc
       discord
     ];
