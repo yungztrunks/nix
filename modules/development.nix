@@ -7,10 +7,9 @@ in
   options.my.modules.develop.enable = lib.mkEnableOption "development tools";
 
   options.vscode.enable = lib.mkEnableOption "vs code";
-  
+
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      vscode
       gh
       github-desktop
       gnumake
