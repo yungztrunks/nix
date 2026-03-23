@@ -8,7 +8,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    programs.vs-code.enable = true;
+    programs.vscode.enable = true;
 
     environment.systemPackages = with pkgs; [
       gh
