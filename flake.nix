@@ -10,17 +10,18 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      hostName = "weshy";
+      userName = "weshy";
+    in
     {
-      nixosConfigurations.weshy = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
+        inherit system;
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.weshy = import ./home/weshy.nix;
-          }
+          (import ./home { inherit hostName userName; })
         ];
       };
     };
