@@ -6,7 +6,7 @@
 
     config = {
       user = {
-        name = "weshford"; # change if you want
+        name = "weshford";
         email = "95880628+weshford@users.noreply.github.com";
       };
 
