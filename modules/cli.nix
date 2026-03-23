@@ -7,8 +7,9 @@ in
   options.my.modules.cli.enable = lib.mkEnableOption "CLI tools and utilities";
 
   config = lib.mkIf cfg.enable {
+    programs.htop.enable = true;
+
     environment.systemPackages = with pkgs; [
-      htop
       fastfetch
       # direnv
       efibootmgr
