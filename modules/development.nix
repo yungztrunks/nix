@@ -8,9 +8,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    programs.vscode.enable = true;
+    # programs.vscode.enable = true;
 
     environment.systemPackages = with pkgs; [
+      vscode
       gh
       github-desktop
       gnumake
