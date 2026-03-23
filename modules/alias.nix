@@ -30,6 +30,9 @@ in
       "grep" = "grep --color=auto";
       "..=" = "cd ..";
       "...=" = "cd ../..";
+
+      # random
+      "cls" = "clear";
     };
   };
 }
