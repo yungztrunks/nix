@@ -8,8 +8,7 @@
         library = "org.kde.breeze";
         theme = "Breeze";
         # macOS style: left=minimize (green), right=maximize & close (yellow & red)
-        ButtonsOnLeft = "I";
-        ButtonsOnRight = "AX";
+        ButtonsOnRight = "IAX";
       };
     };
 
@@ -31,8 +30,7 @@
   home.activation.kdeDecorationReload = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if command -v kwriteconfig6 >/dev/null 2>&1; then
       # Set macOS button positions: minimize on left, maximize & close on right
-      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnLeft "I"
-      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "AX"
+      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "IAX"
       kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library "org.kde.breeze"
       kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme "Breeze"
       
