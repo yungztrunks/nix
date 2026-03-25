@@ -85,15 +85,15 @@
     ".local/share/color-schemes/MacOSLighter.colors".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/assets/plasma-tahoe/ColorSchemes/MacOSLighter.colors";
     ".local/share/plasma/desktoptheme/macOS Light".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/assets/plasma-tahoe/PlasmaStyles/macOS-Light";
 
-    ".icons/default/index.theme".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/dotfiles/icons-default/index.theme";
+    ".icons/default/index.theme".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/weshy/dotfiles/icons-default/index.theme";
 
     ".local/bin/plasma-tahoe-layout" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/dotfiles/bin/plasma-tahoe-layout";
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/weshy/dotfiles/bin/plasma-tahoe-layout";
       executable = true;
     };
 
-    ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/dotfiles/kitty/kitty.conf";
-    ".config/autostart/plasma-tahoe-layout.desktop".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/dotfiles/autostart/plasma-tahoe-layout.desktop";
+    ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/weshy/dotfiles/kitty/kitty.conf";
+    ".config/autostart/plasma-tahoe-layout.desktop".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home/weshy/dotfiles/autostart/plasma-tahoe-layout.desktop";
   };
 
   home.activation.kdeDecorationReload = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
