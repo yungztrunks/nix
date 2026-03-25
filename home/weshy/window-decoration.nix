@@ -7,8 +7,9 @@
         NoPlugin = false;
         library = "org.kde.breeze";
         theme = "Breeze";
-        # macOS style: I=minimize (left, green), A=maximize (yellow), X=close (right, red)
-        ButtonsOnRight = "IAX";
+        # macOS style: all buttons on right - M=minimize (green), A=maximize (yellow), X=close (red)
+        ButtonsOnLeft = "";
+        ButtonsOnRight = "MAX";
       };
     };
 
@@ -40,8 +41,9 @@
   # Apply macOS button colors on activation
   home.activation.applyMacOSButtons = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if command -v kwriteconfig6 >/dev/null 2>&1; then
-      # Set button positions
-      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "IAX"
+      # Set button positions: all on right - M (minimize), A (maximize), X (close)
+      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnLeft ""
+      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "MAX"
       
       # Apply button colors
       # Red (255,95,86) for Close button
@@ -58,5 +60,6 @@
       # Reload KWin
       qdbus org.kde.KWin /KWin org.kde.KWin.reloadConfig 2>/dev/null || true
     fi
+  '';
   '';
 }
