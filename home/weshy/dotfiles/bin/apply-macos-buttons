@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Script to apply macOS-style colored buttons to KDE window decorations
+# Red (close) - RGB: 255, 95, 86
+# Yellow (maximize) - RGB: 255, 189, 46
+# Green (minimize) - RGB: 39, 201, 142
+
+CONFIG_DIR="${HOME}/.config/kwinrc"
+
+# Using kwriteconfig6 to set button colors and order
+# X = Close, A = Maximize, I = Minimize
+
+kwriteconfig6 --file kwinrc --group "org.kde.kdecoration2" --key "ButtonsOnLeft" "I"
+kwriteconfig6 --file kwinrc --group "org.kde.kdecoration2" --key "ButtonsOnRight" "AX"
+
+# Create a custom colors config for buttons
+mkdir -p "${HOME}/.local/share/color-schemes"
+
+cat > "${HOME}/.local/share/color-schemes/macOS-Buttons.colors" << 'EOF'
+[ColorScheme]
+Name=macOS Buttons
+
+[General]
+ColorScheme=MacOSLighter
+
+[WM]
+activeBackground=245,245,247
+activeForeground=36,36,36
+activeBlend=245,245,247
+inactiveBackground=236,236,239
+inactiveForeground=90,90,95
+inactiveBlend=236,236,239
+
+[Colors:Button]
+BackgroundAlternate=239,239,241
+BackgroundNormal=245,245,247
+DecorationFocus=110,81,145
+DecorationHover=110,81,145
+ForegroundActive=36,36,36
+ForegroundInactive=90,90,95
+ForegroundLink=31,97,141
+ForegroundNegative=255,95,86
+ForegroundNeutral=255,189,46
+ForegroundPositive=39,201,142
+ForegroundVisited=108,53,122
+EOF
+
+# Notify KDE to reload
+qdbus org.kde.KWin /KWin org.kde.KWin.reloadConfig 2>/dev/null || true
+
+echo "macOS-style button configuration applied!"
