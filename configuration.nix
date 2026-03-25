@@ -109,14 +109,6 @@
   my.modules.gaming.enable = true;
   my.modules.windowsApps.enable = true;
   my.modules.shellAliases.enable = true;
-  my.modules.programs.enable = true;
-
-  # Home-manager user packages
-  my.home.cli.enable = true;
-  my.home.apps.enable = true;
-  my.home.development.enable = true;
-  my.home.gaming.enable = true;
-  my.home.windowsApps.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
