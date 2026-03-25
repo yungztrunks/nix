@@ -103,7 +103,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  my.modules.normal.enable = true;
   my.modules.cli.enable = true;
   my.modules.develop.enable = true;
   my.modules.gaming.enable = true;
