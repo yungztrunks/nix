@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KDecorations2/Decoration
+X-KDE-PluginInfo-Name=ColorCircles
+X-KDE-PluginInfo-Version=1.0
+
+Name=Color Circles
+Comment=Window decoration with macOS-style colored circle buttons
+
+Icon=preferences-system-windows
+X-KDE-AAOpt=PixelSnapGUIFonts

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Apply colored circle buttons by creating a custom KWin decoration
+
+KWIN_DIR="${HOME}/.local/share/kwin/decorations"
+mkdir -p "$KWIN_DIR"
+
+# Copy our color circles decoration
+cp -r /etc/nixos/home/weshy/dotfiles/kwin-decorations/ColorCircles "$KWIN_DIR/"
+
+# Set it as the active decoration
+if command -v kwriteconfig6 >/dev/null 2>&1; then
+  kwriteconfig6 --file kwinrc --group "org.kde.kdecoration2" --key "library" "org.kde.ColorCircles"
+  kwriteconfig6 --file kwinrc --group "org.kde.kdecoration2" --key "theme" "ColorCircles"
+  kwriteconfig6 --file kwinrc --group "org.kde.kdecoration2" --key "ButtonsOnRight" "IAX"
+  
+  # Reload KWin
+  qdbus org.kde.KWin /KWin org.kde.KWin.reloadConfig 2>/dev/null || true
+  
+  echo "✓ Colored circle buttons applied!"
+fi

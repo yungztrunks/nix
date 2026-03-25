@@ -7,9 +7,9 @@
         NoPlugin = false;
         library = "org.kde.breeze";
         theme = "Breeze";
-        # macOS style: all buttons on right - M=minimize (green), A=maximize (yellow), X=close (red)
+        # macOS style: all buttons on right - I=minimize (green), A=maximize (yellow), X=close (red)
         ButtonsOnLeft = "";
-        ButtonsOnRight = "MAX";
+        ButtonsOnRight = "IAX";
       };
     };
 
@@ -36,30 +36,43 @@
       source = ./dotfiles/bin/setup-macos-buttons;
       executable = true;
     };
+    ".local/bin/apply-color-circles" = {
+      source = ./dotfiles/bin/apply-color-circles;
+      executable = true;
+    };
+    ".local/share/kwin/decorations/ColorCircles" = {
+      source = ./dotfiles/kwin-decorations/ColorCircles;
+      recursive = true;
+    };
   };
 
   # Apply macOS button colors on activation
   home.activation.applyMacOSButtons = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if command -v kwriteconfig6 >/dev/null 2>&1; then
-      # Set button positions: all on right - M (minimize), A (maximize), X (close)
+      # Copy color circles decoration to KWin
+      mkdir -p "''${HOME}/.local/share/kwin/decorations"
+      
+      # Set button positions: all on right - I (minimize), A (maximize), X (close)
       kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnLeft ""
-      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "MAX"
+      kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight "IAX"
       
-      # Apply button colors
-      # Red (255,95,86) for Close button
-      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundNegative "255,95,86"
-      # Yellow (255,189,46) for Maximize button
-      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundNeutral "255,189,46"
-      # Green (39,201,142) for Minimize button
-      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundPositive "39,201,142"
-      
-      # Force breeze library
+      # Use Breeze library with custom colors
       kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library "org.kde.breeze"
       kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme "Breeze"
       
-      # Reload KWin
+      # Apply button colors to make them appear as colored circles
+      # Green (39,201,142) for Minimize button (ForegroundPositive)
+      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundPositive "39,201,142"
+      # Yellow (255,189,46) for Maximize button (ForegroundNeutral)
+      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundNeutral "255,189,46"
+      # Red (255,95,86) for Close button (ForegroundNegative)
+      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key ForegroundNegative "255,95,86"
+      
+      # Also set button backgrounds to solid colors for visual appearance
+      kwriteconfig6 --file kdeglobals --group "Colors:Button" --key BackgroundNormal "245,245,247"
+      
+      # Reload KWin to apply changes
       qdbus org.kde.KWin /KWin org.kde.KWin.reloadConfig 2>/dev/null || true
     fi
-  '';
   '';
 }

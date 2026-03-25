@@ -1,0 +1,9 @@
+[General]
+# Color Circles - macOS style buttons
+# Green: 39, 201, 142 (Minimize)
+# Yellow: 255, 189, 46 (Maximize)
+# Red: 255, 95, 86 (Close)
+
+ColorScheme=MacOSLighter
+TitleAlignment=Left
+ShadowSize=8
