@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    weathr = {
+      url = "github:Veirt/weathr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, weathr, ... }:
     let
       system = "x86_64-linux";
       hostName = "weshy";
@@ -21,6 +25,11 @@
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          {
+            home-manager.users.${userName} = {
+              imports = [ weathr.homeModules.weathr ];
+            };
+          }
           (import ./home { inherit hostName userName; })
         ];
       };
