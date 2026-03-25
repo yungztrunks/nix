@@ -28,11 +28,11 @@ in
       
       # grep
       "grep" = "grep --color=auto";
-      "..=" = "cd ..";
-      "...=" = "cd ../..";
 
       # random
       "cls" = "clear";
+      "..=" = "cd ..";
+      "...=" = "cd ../..";
     };
   };
 }
