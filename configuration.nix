@@ -13,8 +13,6 @@
       ./modules/gaming.nix
       ./modules/windows-apps.nix
       ./modules/alias.nix
-      ./modules/hyprland.nix
-      ./modules/hyprland-support.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -56,10 +54,9 @@
   # You can disable this if you're only using the Wayland session. test
   services.xserver.enable = true;
 
-  # Enable Hyprland session via SDDM.
+  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.displayManager.defaultSession = "hyprland";
-  services.desktopManager.plasma6.enable = false;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -72,11 +69,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "ignore";
-  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -103,7 +95,8 @@
     description = "weshy";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      #  thunderbird
+      kdePackages.kate
+    #  thunderbird
     ];
   };
 
@@ -115,8 +108,6 @@
   my.modules.gaming.enable = true;
   my.modules.windowsApps.enable = true;
   my.modules.shellAliases.enable = true;
-  my.modules.hyprland.enable = true;
-  my.modules.hyprlandSupport.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -124,6 +115,7 @@
       # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wayland-utils
       wl-clipboard
+      kdePackages.partitionmanager
       #  wget
   ];
 
