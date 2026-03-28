@@ -14,12 +14,12 @@ in
     programs.fzf.enable = true;
     programs.bat.enable = true;
     programs.neovim.enable = true;
-  };
 
-  home.packages = with pkgs; [
-    fd
-    ripgrep
-    exa
-    btop
-  ];
+    home.packages = with pkgs; [
+      fd
+      ripgrep
+      exa
+      btop
+    ];
+  };
 }
