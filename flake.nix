@@ -15,13 +15,12 @@
 
   outputs = { nixpkgs, home-manager, weathr, ... }:
     let
-      system = "x86_64-linux";
       hostName = "weshy";
       userName = "weshy";
     in
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
