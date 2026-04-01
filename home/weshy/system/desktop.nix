@@ -6,6 +6,7 @@
     settings = {
       env = [
         "XCURSOR_SIZE,24"
+        "QT_QPA_PLATFORM_PLUGIN_PATH,${pkgs.qt6.full}/lib/qt-${pkgs.qt6.version}/plugins"
       ];
 
       monitor = ",preferred,auto,auto";
@@ -34,9 +35,17 @@
         };
       };
 
+      gestures = {
+        workspace_swipe = false;
+      };
+
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+      };
+
+      master = {
+        new_is_master = true;
       };
 
       misc = {
@@ -85,6 +94,9 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
       ];
 
+      windowrulev2 = [
+        "suppressevent maximize, class:.*"
+      ];
     };
   };
 
