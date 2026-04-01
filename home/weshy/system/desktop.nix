@@ -34,17 +34,9 @@
         };
       };
 
-      gestures = {
-        workspace_swipe = false;
-      };
-
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-      };
-
-      master = {
-        new_is_master = true;
       };
 
       misc = {
@@ -97,9 +89,6 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
       ];
 
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-      ];
     };
   };
 
