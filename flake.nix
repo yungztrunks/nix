@@ -26,11 +26,11 @@
         };
 
         # Example ARM machine. Enable it once `./home/arm-laptop` exists.
-        arm-laptop = {
-          enabled = false;
-          system = "aarch64-linux";
-          userNames = [ "weshy" ];
-        };
+        # arm-laptop = {
+        #   enabled = false;
+        #   system = "aarch64-linux";
+        #   userNames = [ "weshy" ];
+        # };
       };
 
       enabledHosts = nixpkgs.lib.filterAttrs (_: hostCfg: hostCfg.enabled or true) hosts;
