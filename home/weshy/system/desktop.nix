@@ -6,7 +6,6 @@
     settings = {
       env = [
         "XCURSOR_SIZE,24"
-        "QT_QPA_PLATFORM_PLUGIN_PATH,${pkgs.qt6.full}/lib/qt-${pkgs.qt6.version}/plugins"
       ];
 
       monitor = ",preferred,auto,auto";
@@ -52,6 +51,10 @@
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
       };
+
+      exec-once = [
+        "noctalia-shell"
+      ];
 
       "$mod" = "SUPER";
       "$terminal" = "kitty";
