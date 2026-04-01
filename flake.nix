@@ -15,9 +15,13 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, weathr, ... }:
+  outputs = { nixpkgs, home-manager, weathr, noctalia, ... }:
     let
       hosts = {
         weshy = {
@@ -47,7 +51,10 @@
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.sharedModules = [ weathr.homeModules.weathr ];
+              home-manager.sharedModules = [
+                weathr.homeModules.weathr
+                noctalia.homeModules.default
+              ];
             }
             (import ./home {
               inherit hostName;
