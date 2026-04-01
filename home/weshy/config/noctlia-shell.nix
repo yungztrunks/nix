@@ -1,45 +1,50 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, config, ... }:
 
 {
-  programs.noctlia-shell = {
+  # Configure noctalia-shell
+  programs.noctalia-shell = {
     enable = true;
     settings = {
-      # General appearance
-      theme = "dark";
-      accent_color = "#6e5194";
-      
-      # Panel configuration
-      panel = {
+      bar = {
         position = "top";
-        height = 32;
-        transparency = 0.95;
-      };
-
-      # Taskbar
-      taskbar = {
-        enabled = true;
-        position = "top";
-      };
-
-      # Workspace
-      workspaces = 10;
-      
-      # Animations
-      animations = {
-        enabled = true;
-        duration = 200;
-      };
-
-      # Keybindings
-      keybindings = {
-        show_overview = "Super_L";
-        close_window = "Super+Q";
-        switch_workspace_left = "Super+Comma";
-        switch_workspace_right = "Super+Period";
+        density = "default";
+        showCapsule = true;
+        widgets = {
+          left = [
+            {
+              id = "ControlCenter";
+              useDistroLogo = true;
+            }
+            {
+              id = "Network";
+            }
+            {
+              id = "Bluetooth";
+            }
+          ];
+          center = [
+            {
+              hideUnoccupied = false;
+              id = "Workspace";
+              labelMode = "none";
+            }
+          ];
+          right = [
+            {
+              alwaysShowPercentage = false;
+              id = "Battery";
+              warningThreshold = 30;
+            }
+            {
+              formatHorizontal = "HH:mm";
+              formatVertical = "HH mm";
+              id = "Clock";
+              useMonospacedFont = true;
+              usePrimaryColor = true;
+            }
+          ];
+        };
       };
     };
   };
-
-  # Create noctlia-shell configuration directory if needed
-  xdg.configHome = "${config.home.homeDirectory}/.config";
 }
