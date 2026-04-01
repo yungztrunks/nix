@@ -20,6 +20,7 @@ in
       ripgrep
       eza
       btop
+      yazi
     ];
   };
 }
