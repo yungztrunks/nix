@@ -8,7 +8,7 @@
         "XCURSOR_SIZE,24"
       ];
 
-      monitor = ",preferred,auto,auto";
+      monitor = ",preferred,auto,1.0";
 
       general = {
         gaps_in = 5;
