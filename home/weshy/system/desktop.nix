@@ -6,7 +6,6 @@
     settings = {
       env = [
         "XCURSOR_SIZE,24"
-        "QT_QPA_PLATFORM_PLUGIN_PATH,${pkgs.qt6.full}/lib/qt-${pkgs.qt6.version}/plugins"
       ];
 
       monitor = ",preferred,auto,auto";
