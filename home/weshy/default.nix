@@ -20,7 +20,7 @@
     ./config/weathr.nix
     ./config/fastfetch.nix
     ./config/tahoetheme.nix
-    ./config/noctlia-shell.nix
+    ./config/noctalia.nix
 
     # Packages
     ./packages/cli.nix
