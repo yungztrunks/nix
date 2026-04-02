@@ -244,7 +244,7 @@
         name = "Waiblingen";
         weatherEnabled = true;
         weatherShowEffects = true;
-        weatherTaliaMascotAlways = false;
+        weatherTaliaMascotAlways = true;
         useFahrenheit = false;
         use12hourFormat = false;
         showWeekNumberInCalendar = false;
