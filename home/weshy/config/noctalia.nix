@@ -68,16 +68,6 @@
               id = "plugin:usb-drive-manager";
             }
             {
-              capsLockIcon = "square-letter-c";
-              hideWhenOff = false;
-              id = "LockKeys";
-              numLockIcon = "square-letter-n";
-              scrollLockIcon = "square-letter-s";
-              showCapsLock = true;
-              showNumLock = true;
-              showScrollLock = true;
-            }
-            {
               characterCount = 2;
               colorizeIcons = false;
               emptyColor = "tertiary";
@@ -119,6 +109,16 @@
               id = "Battery";
               showNoctaliaPerformance = false;
               showPowerProfiles = false;
+            }
+            {
+              capsLockIcon = "square-letter-c";
+              hideWhenOff = false;
+              id = "LockKeys";
+              numLockIcon = "square-letter-n";
+              scrollLockIcon = "square-letter-s";
+              showCapsLock = true;
+              showNumLock = true;
+              showScrollLock = true;
             }
             {
               displayMode = "onhover";
