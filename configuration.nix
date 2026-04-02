@@ -105,6 +105,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # added primarily for noctalia (to have working features)
+  hardware.bluetooth.enable = true;
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
+
   my.modules.cli.enable = true;
   my.modules.develop.enable = true;
   my.modules.gaming.enable = true;
