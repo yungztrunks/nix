@@ -13,6 +13,7 @@ in
       "nixtest" = "sudo nixos-rebuild test --flake /etc/nixos#$(hostname)";
       "nixboot" = "sudo nixos-rebuild boot --flake /etc/nixos#$(hostname)";
       "nixdry" = "sudo nixos-rebuild dry-activate --flake /etc/nixos#$(hostname)";
+      "hm-remove" = "find \"$HOME\" -name '*.hm-backup' -delete";
       
       # flake alias
       "flakebuild" = "nix build .#";
