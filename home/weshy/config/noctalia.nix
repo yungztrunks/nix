@@ -102,15 +102,6 @@
               id = "plugin:privacy-indicator";
             }
             {
-              deviceNativePath = "__default__";
-              displayMode = "graphic-clean";
-              hideIfIdle = true;
-              hideIfNotDetected = true;
-              id = "Battery";
-              showNoctaliaPerformance = false;
-              showPowerProfiles = false;
-            }
-            {
               capsLockIcon = "square-letter-c";
               hideWhenOff = false;
               id = "LockKeys";
@@ -119,6 +110,15 @@
               showCapsLock = true;
               showNumLock = true;
               showScrollLock = true;
+            }
+            {
+              deviceNativePath = "__default__";
+              displayMode = "graphic-clean";
+              hideIfIdle = true;
+              hideIfNotDetected = true;
+              id = "Battery";
+              showNoctaliaPerformance = false;
+              showPowerProfiles = false;
             }
             {
               displayMode = "onhover";
