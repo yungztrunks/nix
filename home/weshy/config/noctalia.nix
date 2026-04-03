@@ -53,6 +53,14 @@
               id = "plugin:clipper";
             }
             {
+              defaultSettings = {
+                colorHistory = [ ];
+                detectedRecorder = "";
+                installedLangs = [ "eng" ];
+                paletteColors = [ ];
+                selectedOcrLang = "eng";
+                transAvailable = false;
+              };
               id = "plugin:screen-toolkit";
             }
             {
@@ -99,6 +107,15 @@
           ];
           right = [
             {
+              defaultSettings = {
+                activeColor = "primary";
+                enableToast = true;
+                hideInactive = false;
+                iconSpacing = 4;
+                inactiveColor = "none";
+                micFilterRegex = "";
+                removeMargins = false;
+              };
               id = "plugin:privacy-indicator";
             }
             {
