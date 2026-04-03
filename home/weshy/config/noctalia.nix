@@ -159,10 +159,10 @@
             {
               clockColor = "none";
               customFont = "";
-              formatHorizontal = "HH:mm";
+              formatHorizontal = "dddd, dd MMMM yyyy - HH:mm:ss";
               formatVertical = "HH mm";
               id = "Clock";
-              tooltipFormat = "HH:mm ddd, MMM dd";
+              tooltipFormat = "";
               useCustomFont = false;
             }
             {
