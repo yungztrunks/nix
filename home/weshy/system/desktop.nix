@@ -1,11 +1,19 @@
 { config, pkgs, ... }:
 
 {
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "macOS";
+    package = null;
+    size = 24;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       env = [
         "XCURSOR_SIZE,24"
+        "XCURSOR_THEME,macOS"
       ];
 
       monitor = ",preferred,auto,0.9";
