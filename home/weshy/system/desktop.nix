@@ -57,7 +57,6 @@
         "$mod, Q, killactive,"
         "$mod SHIFT, Q, exit,"
         "$mod, V, togglefloating,"
-        "$mod, D, exec, rofi -show drun -theme ~/.config/rofi/config.rasi"
         "$mod, F, fullscreen,"
 
         # Workspace keybinds
