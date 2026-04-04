@@ -7,14 +7,8 @@ in
   options.my.home.cli.enable = lib.mkEnableOption "CLI tools and utilities";
 
   config = lib.mkIf cfg.enable {
-    programs.htop.enable = true;
-    programs.fastfetch.enable = true;
-    programs.weathr.enable = true;
-    programs.fzf.enable = true;
-    programs.bat.enable = true;
-    programs.neovim.enable = true;
-
     home.packages = with pkgs; [
+      htop
       fd
       ripgrep
       eza
