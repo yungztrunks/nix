@@ -60,12 +60,6 @@
         "$mod, D, exec, rofi -show drun -theme ~/.config/rofi/config.rasi"
         "$mod, F, fullscreen,"
 
-        # Move focus with mod + arrow keys
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-
         # Workspace keybinds
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
