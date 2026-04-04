@@ -54,7 +54,7 @@
 
       bind = [
         "$mod, T, exec, $terminal"
-        "$mod, Q, killactive,"
+        "$mod, C, killactive,"
         "$mod, L, exit,"
         "$mod, V, togglefloating,"
         "$mod, F, fullscreen,"
