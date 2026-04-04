@@ -10,7 +10,6 @@ in
     programs.htop.enable = true;
     programs.fastfetch.enable = true;
     programs.weathr.enable = true;
-    programs.starship.enable = true;
     programs.fzf.enable = true;
     programs.bat.enable = true;
     programs.neovim.enable = true;
