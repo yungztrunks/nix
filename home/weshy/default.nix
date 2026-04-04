@@ -11,9 +11,7 @@
   imports = [
     # System integration
     ./system/desktop.nix
-    ./system/window-decoration.nix
-    ./system/symlinks.nix
-
+    
     # Configuration
     ./config/git.nix
     ./config/kitty.nix
