@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    weathr = {
-      url = "github:Veirt/weathr";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +17,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, weathr, noctalia, ... }:
+  outputs = { nixpkgs, home-manager, noctalia, ... }:
     let
       hosts = {
         weshy = {
@@ -52,7 +48,6 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.sharedModules = [
-                weathr.homeModules.weathr
                 noctalia.homeModules.default
               ];
             }
