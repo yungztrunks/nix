@@ -53,7 +53,7 @@
       "$terminal" = "kitty";
 
       bind = [
-        "$mod, Return, exec, $terminal"
+        "$mod, T, exec, $terminal"
         "$mod, Q, killactive,"
         "$mod SHIFT, Q, exit,"
         "$mod, V, togglefloating,"
