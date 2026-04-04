@@ -125,6 +125,7 @@
       hyprland
       hyprlock
       hypridle
+      kdePackages.dolphin
       #  wget
   ];
 
