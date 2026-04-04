@@ -17,7 +17,6 @@
     ./config/kitty.nix
     ./config/weathr.nix
     ./config/fastfetch.nix
-    ./config/tahoetheme.nix
     ./config/noctalia.nix
 
     # Packages
