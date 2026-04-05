@@ -51,6 +51,7 @@
 
       "$mod" = "SUPER";
       "$terminal" = "kitty";
+      "$ipc" = "noctalia-shell ipc call";
 
       bind = [
         "$mod, T, exec, $terminal"
@@ -86,6 +87,25 @@
         # "binde = $mod, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.1')"
         # "binde = $mod, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.9) | if . < 1 then 1 else . end')"
       ];
+
+      bindel = [
+        # Volume controls
+        ", XF86AudioRaiseVolume, exec, $ipc volume increase"
+        ", XF86AudioLowerVolume, exec, $ipc volume decrease"
+        # Brightness controls
+        ", XF86MonBrightnessUp, exec, $ipc brightness increase"
+        ", XF86MonBrightnessDown, exec, $ipc brightness decrease"
+        # Media controls
+        ", XF86AudioPlay, exec, $ipc media playPause"
+        ", XF86AudioNext, exec, $ipc media next"
+        ", XF86AudioPrev, exec, $ipc media previous"
+      ];
+
+      # bindl = [
+      #   # Mute controls (no repeat)
+      #   ", XF86AudioMute, exec, $ipc volume muteOutput"
+      #   ", XF86AudioMicMute, exec, $ipc volume muteInput"
+      # ];
 
       bindm = [
         "$mod, mouse:272, movewindow"
