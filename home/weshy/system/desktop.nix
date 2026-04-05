@@ -91,6 +91,9 @@
         "$mod, R, exec, $ipc launcher command"
         "ALT, TAB, exec, $ipc launcher windows"
 
+        # wichtig
+        "$mod, E, exec, dolphin"
+
         # Zoom
         # "binde = $mod, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.1')"
         # "binde = $mod, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.9) | if . < 1 then 1 else . end')"
