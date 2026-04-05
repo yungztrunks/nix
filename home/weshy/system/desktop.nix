@@ -113,7 +113,7 @@
       ];
 
       bindr = [
-        "$mod, exec, $ipc launcher toggle"
+        "$mod, SUPER_L, exec, $ipc launcher toggle"
       ];
 
     };
