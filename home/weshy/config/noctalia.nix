@@ -294,7 +294,7 @@
       wallpaper = {
         enabled = true;
         overviewEnabled = false;
-        directory = "/home/weshy/Pictures/Wallpapers";
+        directory = "/home/weshy/media/pics/wallpaper";
         monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
@@ -308,11 +308,11 @@
         automationEnabled = false;
         wallpaperChangeMode = "random";
         randomIntervalSec = 300;
-        transitionDuration = 1500;
+        transitionDuration = 2000;
         transitionType = [ "fade" "disc" "stripes" "wipe" "pixelate" "honeycomb" ];
         skipStartupTransition = false;
         transitionEdgeSmoothness = 0.05;
-        panelPosition = "follow_bar";
+        panelPosition = "center";
         hideWallpaperFilenames = false;
         useOriginalImages = false;
         overviewBlur = 0.4;
