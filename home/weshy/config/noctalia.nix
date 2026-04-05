@@ -100,7 +100,7 @@
           center = [
             {
               colorName = "primary";
-              hideWhenIdle = true;
+              hideWhenIdle = false;
               id = "AudioVisualizer";
               width = 700;
             }
