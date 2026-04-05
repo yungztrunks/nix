@@ -588,8 +588,8 @@
       idle = {
         enabled = true;
         screenOffTimeout = 600;
-        lockTimeout = 660;
-        suspendTimeout = 1812;
+        lockTimeout = 720;
+        suspendTimeout = 1800;
         fadeDuration = 5;
         screenOffCommand = "";
         lockCommand = "";
@@ -597,7 +597,7 @@
         resumeScreenOffCommand = "";
         resumeLockCommand = "";
         resumeSuspendCommand = "";
-        customCommands = "[]";
+        customCommands = "[{\"name\":\"rice\",\"timeout\":300,\"command\":\"hyprctl dispatch workspace 10 && sleep 0.2 && kitty --hold -e btop & kitty --hold -e fastfetch & kitty --hold -e yazi\",\"resumeCommand\":\"notify-send \\\"back\\\"\"}]";
       };
       
       desktopWidgets = {
