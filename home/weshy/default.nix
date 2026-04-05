@@ -13,6 +13,7 @@
     ./system/desktop.nix
     
     # Configuration
+    ./config/cursor.nix
     ./config/git.nix
     ./config/kitty.nix
     ./config/fastfetch.nix
