@@ -14,8 +14,6 @@ in
       eza
       btop
       yazi
-      imagemagick
-      ffmpeg
     ];
   };
 }
