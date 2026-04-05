@@ -597,7 +597,7 @@
         resumeScreenOffCommand = "";
         resumeLockCommand = "";
         resumeSuspendCommand = "";
-        customCommands = "[{\"name\":\"rice\",\"timeout\":300,\"command\":\"hyprctl dispatch workspace 10 && sleep 0.2 && kitty --hold -e btop & kitty --hold -e fastfetch & kitty --hold -e yazi\",\"resumeCommand\":\"notify-send \\\"back\\\"\"}]";
+        customCommands = "[{\"name\":\"rc\",\"timeout\":300,\"command\":\"hyprctl dispatch workspace 10 && sleep 0.2 && kitty --hold -e btop & kitty --hold -e fastfetch & kitty --hold -e yazi\",\"resumeCommand\":\"notify-send \\\"back\\\"\"}]";
       };
       
       desktopWidgets = {
