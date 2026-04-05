@@ -113,7 +113,7 @@
       ];
 
       bindr = [
-        "SUPER_L, exec, $ipc launcher toggle"
+        "$mod, exec, noctalia-shell ipc call launcher toggle"
       ];
 
     };
