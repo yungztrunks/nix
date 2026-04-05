@@ -261,7 +261,7 @@
         name = "Waiblingen";
         weatherEnabled = true;
         weatherShowEffects = true;
-        weatherTaliaMascotAlways = true;
+        weatherTaliaMascotAlways = false; # wär des miku hätte ich es gelassen
         useFahrenheit = false;
         use12hourFormat = false;
         showWeekNumberInCalendar = false;
