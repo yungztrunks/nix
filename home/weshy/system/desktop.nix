@@ -7,6 +7,7 @@
       env = [
         "XCURSOR_SIZE,24"
         "XCURSOR_THEME,macOS"
+        "XCURSOR_PATH,${config.home.homeDirectory}/.icons:${config.home.homeDirectory}/.local/share/icons:/usr/share/icons"
       ];
 
       monitor = ",preferred,auto,1.0";
