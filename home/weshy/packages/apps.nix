@@ -15,6 +15,7 @@ in
       spotify
       vlc
       discord
+      puddletag
     ];
   };
 }
