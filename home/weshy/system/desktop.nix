@@ -59,6 +59,8 @@
         "$mod, L, exit,"
         "$mod, V, togglefloating,"
         "$mod, F, fullscreen,"
+        
+        "SUPER, A, exec, qs -c noctalia-shell ipc call plugin:wallcards toggle"
 
         # Workspace keybinds
         "$mod, 1, workspace, 1"
