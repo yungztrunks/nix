@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       (hostPath + "/hardware.nix")
-      ./modules/cli.nix
       ./modules/development.nix
       ./modules/gaming.nix
       ./modules/windows-apps.nix
