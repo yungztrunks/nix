@@ -13,12 +13,9 @@
     ./system/desktop.nix
     
     # Configuration
-    ./config/bat.nix
     ./config/cursor.nix
-    ./config/fzf.nix
     ./config/git.nix
     ./config/kitty.nix
-    ./config/fastfetch.nix
     ./config/neovim.nix
     ./config/noctalia.nix
 
