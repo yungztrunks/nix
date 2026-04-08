@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -27,7 +27,6 @@
               fullName = "weshy";
               gitName = "weshford";
               gitEmail = "95880628+weshford@users.noreply.github.com";
-              wallpaperDirectory = "/home/weshy/media/pics/wallpaper";
               homeModule = ./users/weshy/default.nix;
               extraGroups = [ "networkmanager" "wheel" ];
             };
@@ -44,7 +43,6 @@
             inherit hostName;
             hostPath = ./hosts/${hostName};
             hostUsers = hostCfg.users;
-            primaryUser = builtins.head (builtins.attrNames hostCfg.users);
           };
           modules = [
             ./configuration.nix

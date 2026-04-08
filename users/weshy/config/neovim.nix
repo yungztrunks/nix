@@ -2,9 +2,7 @@
 
 {
   programs.neovim = {
-    settings = {
-      updateChecker = true;
-      updateCheckerInterval = 7;
-    };
+    enable = true;
+    vimAlias = true;
   };
 }
