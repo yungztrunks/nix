@@ -528,7 +528,7 @@
         visualizerType = "wave";
         spectrumMirrored = true;
         mprisBlacklist = [ ];
-        preferredPlayer = "";
+        preferredPlayer = "spotify";
         volumeFeedback = false;
         volumeFeedbackSoundFile = "";
       };
