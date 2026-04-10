@@ -1,6 +1,11 @@
-{ pkgs, config, userConfig, ... }:
+{ pkgs, config, userConfig, lib, osConfig, ... }:
 
-{
+let
+  useNoctalia =
+    (osConfig.programs.hyprland.enable or false)
+    || (osConfig.programs.niri.enable or false);
+in
+lib.mkIf useNoctalia {
   # Configure noctalia-shell with all settings persisted from cool.json
   programs.noctalia-shell = {
     enable = true;

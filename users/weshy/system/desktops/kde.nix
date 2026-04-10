@@ -5,4 +5,12 @@ lib.mkIf (osConfig.services.desktopManager.plasma6.enable or false) {
     enable = true;
     platformTheme.name = "kde";
   };
+
+  home.file.".config/kdeglobals".text = ''
+    [General]
+    ColorScheme=BreezeDark
+
+    [KDE]
+    SingleClick=false
+  '';
 }
