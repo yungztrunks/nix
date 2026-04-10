@@ -1,5 +1,7 @@
 { ... }:
 
 {
-  # Kitty config placeholder.
+  programs.kitty = {
+    enable = true;
+  };
 }

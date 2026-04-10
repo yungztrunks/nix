@@ -1,5 +1,8 @@
 { ... }:
 
 {
-  # Neovim config placeholder.
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+  };
 }
