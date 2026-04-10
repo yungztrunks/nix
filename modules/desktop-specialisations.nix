@@ -2,10 +2,21 @@
 
 let
   cfg = config.my.modules.desktopSpecialisations;
+  baseDesktopEnabled = {
+    hyprland = cfg.buildHyprland;
+    niri = cfg.buildNiri;
+    kde = cfg.buildKde;
+  }.${cfg.baseDesktop};
 in
 {
   options.my.modules.desktopSpecialisations = {
     enable = lib.mkEnableOption "desktop specialisations";
+
+    baseDesktop = lib.mkOption {
+      type = lib.types.enum [ "hyprland" "niri" "kde" ];
+      default = "hyprland";
+      description = "Desktop stack used by the base generation (non-specialised) boot entry.";
+    };
 
     buildHyprland = lib.mkOption {
       type = lib.types.bool;
@@ -26,41 +37,77 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = cfg.buildHyprland || cfg.buildNiri || cfg.buildKde;
-        message = "At least one desktop specialisation must be enabled.";
-      }
-    ];
+  config = lib.mkIf cfg.enable (lib.mkMerge [
+    {
+      assertions = [
+        {
+          assertion = cfg.buildHyprland || cfg.buildNiri || cfg.buildKde;
+          message = "At least one desktop specialisation must be enabled.";
+        }
+        {
+          assertion = baseDesktopEnabled;
+          message = "baseDesktop must also be enabled via the corresponding build* option.";
+        }
+      ];
+    }
 
-    specialisation = {
-      hyprland = lib.mkIf cfg.buildHyprland {
-        configuration = {
-          services.displayManager.ly.enable = true;
-          programs.hyprland = {
-            enable = true;
-            xwayland.enable = true;
+    # Base desktop (non-specialised entry). This avoids a shell-only menu entry.
+    (lib.mkIf (cfg.baseDesktop == "hyprland") {
+      system.nixos.distroName = "NixOS (hyprland)";
+      services.displayManager.ly.enable = true;
+      programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+      };
+      security.pam.services.hyprlock = { };
+    })
+
+    (lib.mkIf (cfg.baseDesktop == "niri") {
+      system.nixos.distroName = "NixOS (niri)";
+      services.displayManager.ly.enable = true;
+      programs.niri.enable = true;
+    })
+
+    (lib.mkIf (cfg.baseDesktop == "kde") {
+      system.nixos.distroName = "NixOS (kde)";
+      services.displayManager.ly.enable = lib.mkForce false;
+      services.xserver.enable = true;
+      services.displayManager.sddm.enable = true;
+      services.desktopManager.plasma6.enable = true;
+    })
+
+    {
+      specialisation = {
+        hyprland = lib.mkIf (cfg.buildHyprland && cfg.baseDesktop != "hyprland") {
+          configuration = {
+            system.nixos.distroName = "NixOS";
+            services.displayManager.ly.enable = true;
+            programs.hyprland = {
+              enable = true;
+              xwayland.enable = true;
+            };
+            security.pam.services.hyprlock = { };
           };
-          security.pam.services.hyprlock = { };
         };
-      };
 
-      niri = lib.mkIf cfg.buildNiri {
-        configuration = {
-          services.displayManager.ly.enable = true;
-          programs.niri.enable = true;
+        niri = lib.mkIf (cfg.buildNiri && cfg.baseDesktop != "niri") {
+          configuration = {
+            system.nixos.distroName = "NixOS";
+            services.displayManager.ly.enable = true;
+            programs.niri.enable = true;
+          };
         };
-      };
 
-      kde = lib.mkIf cfg.buildKde {
-        configuration = {
-          services.displayManager.ly.enable = lib.mkForce false;
-          services.xserver.enable = true;
-          services.displayManager.sddm.enable = true;
-          services.desktopManager.plasma6.enable = true;
+        kde = lib.mkIf (cfg.buildKde && cfg.baseDesktop != "kde") {
+          configuration = {
+            system.nixos.distroName = "NixOS";
+            services.displayManager.ly.enable = lib.mkForce false;
+            services.xserver.enable = true;
+            services.displayManager.sddm.enable = true;
+            services.desktopManager.plasma6.enable = true;
+          };
         };
       };
-    };
-  };
+    }
+  ]);
 }
