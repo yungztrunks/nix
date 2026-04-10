@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  # Kitty config placeholder.
+}
