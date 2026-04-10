@@ -10,7 +10,7 @@ required_files=(
   "hosts/templates/gpu.nix"
   "users/templates/default.nix"
   "users/templates/system/00default.nix"
-  "users/templates/system/session-profiles.nix"
+  "users/templates/system/session.nix"
   "users/templates/system/cursor.nix"
   "users/templates/system/desktops/00default.nix"
   "users/templates/system/desktops/hyprland.nix"
