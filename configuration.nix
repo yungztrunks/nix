@@ -11,6 +11,7 @@
       (hostPath + "/default.nix")
       (hostPath + "/hardware.nix")
       ./modules/development.nix
+      ./modules/desktop-specialisations.nix
       ./modules/gaming.nix
       ./modules/windows-apps.nix
       ./modules/alias.nix
