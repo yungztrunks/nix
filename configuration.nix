@@ -87,6 +87,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Avoid abrupt DM restarts during switch; apply desktop stack changes via boot + reboot.
+  # systemd.services.display-manager.restartIfChanged = false;
+
   my.modules.develop.enable = true;
   my.modules.desktopSpecialisations.enable = true;
   my.modules.gaming.enable = true;
