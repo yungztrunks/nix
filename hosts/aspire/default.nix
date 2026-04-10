@@ -3,6 +3,7 @@
 {
   # Host-specific desktop selection controls.
   my.modules.desktopSpecialisations = {
+    baseDesktop = "hyprland";
     buildHyprland = true;
     buildNiri = true;
     buildKde = true;
