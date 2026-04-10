@@ -1,4 +1,4 @@
-{ ... }:
+{ userConfig ? { }, ... }:
 
 {
   # Configure and uncomment when user identity is set.
