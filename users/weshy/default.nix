@@ -10,7 +10,7 @@
 
   imports = [
     # System integration
-    ./system/desktop.nix
+    ./system/session.nix
     ./system/cursor.nix
     
     # Configuration
