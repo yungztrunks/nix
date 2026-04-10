@@ -11,9 +11,9 @@
   imports = [
     # System integration
     ./system/desktop.nix
+    ./system/cursor.nix
     
     # Configuration
-    ./config/cursor.nix
     ./config/git.nix
     ./config/kitty.nix
     ./config/neovim.nix
