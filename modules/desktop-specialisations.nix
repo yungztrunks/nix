@@ -55,17 +55,25 @@ in
     (lib.mkIf (cfg.baseDesktop == "hyprland") {
       system.nixos.distroName = "NixOS (hyprland)";
       services.displayManager.ly.enable = true;
+      services.displayManager.sddm.enable = lib.mkForce false;
+      services.xserver.enable = lib.mkForce false;
       programs.hyprland = {
         enable = true;
         xwayland.enable = true;
       };
+      programs.niri.enable = lib.mkForce false;
+      services.desktopManager.plasma6.enable = lib.mkForce false;
       security.pam.services.hyprlock = { };
     })
 
     (lib.mkIf (cfg.baseDesktop == "niri") {
       system.nixos.distroName = "NixOS (niri)";
       services.displayManager.ly.enable = true;
+      services.displayManager.sddm.enable = lib.mkForce false;
+      services.xserver.enable = lib.mkForce false;
+      programs.hyprland.enable = lib.mkForce false;
       programs.niri.enable = true;
+      services.desktopManager.plasma6.enable = lib.mkForce false;
     })
 
     (lib.mkIf (cfg.baseDesktop == "kde") {
@@ -73,6 +81,8 @@ in
       services.displayManager.ly.enable = lib.mkForce false;
       services.xserver.enable = true;
       services.displayManager.sddm.enable = true;
+      programs.hyprland.enable = lib.mkForce false;
+      programs.niri.enable = lib.mkForce false;
       services.desktopManager.plasma6.enable = true;
     })
 
@@ -80,30 +90,40 @@ in
       specialisation = {
         hyprland = lib.mkIf (cfg.buildHyprland && cfg.baseDesktop != "hyprland") {
           configuration = {
-            system.nixos.distroName = "NixOS";
+            system.nixos.distroName = lib.mkForce "NixOS";
             services.displayManager.ly.enable = true;
+            services.displayManager.sddm.enable = lib.mkForce false;
+            services.xserver.enable = lib.mkForce false;
             programs.hyprland = {
               enable = true;
               xwayland.enable = true;
             };
+            programs.niri.enable = lib.mkForce false;
+            services.desktopManager.plasma6.enable = lib.mkForce false;
             security.pam.services.hyprlock = { };
           };
         };
 
         niri = lib.mkIf (cfg.buildNiri && cfg.baseDesktop != "niri") {
           configuration = {
-            system.nixos.distroName = "NixOS";
+            system.nixos.distroName = lib.mkForce "NixOS";
             services.displayManager.ly.enable = true;
+            services.displayManager.sddm.enable = lib.mkForce false;
+            services.xserver.enable = lib.mkForce false;
+            programs.hyprland.enable = lib.mkForce false;
             programs.niri.enable = true;
+            services.desktopManager.plasma6.enable = lib.mkForce false;
           };
         };
 
         kde = lib.mkIf (cfg.buildKde && cfg.baseDesktop != "kde") {
           configuration = {
-            system.nixos.distroName = "NixOS";
+            system.nixos.distroName = lib.mkForce "NixOS";
             services.displayManager.ly.enable = lib.mkForce false;
             services.xserver.enable = true;
             services.displayManager.sddm.enable = true;
+            programs.hyprland.enable = lib.mkForce false;
+            programs.niri.enable = lib.mkForce false;
             services.desktopManager.plasma6.enable = true;
           };
         };
