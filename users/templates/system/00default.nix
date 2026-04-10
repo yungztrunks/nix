@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./desktop.nix
+    ./session.nix
     ./cursor.nix
   ];
 }
