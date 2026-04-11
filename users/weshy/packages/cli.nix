@@ -14,6 +14,7 @@ in
       eza
       btop
       yazi
+      # TODO: sowas wie 7zip
     ];
   };
 }
