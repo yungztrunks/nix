@@ -6,7 +6,7 @@
     baseDesktop = "hyprland";
     buildHyprland = true;
     buildNiri = true;
-    buildKde = true;
+    buildKde = false;
   };
 
   # Host-specific multimedia stack.
