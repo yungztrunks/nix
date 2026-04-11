@@ -20,4 +20,4 @@ TYPE="$(detect_type)"
 
 echo "HARDWARE_TYPE=${TYPE}"
 echo "CPU=$(lscpu | awk -F: '/Model name/ {gsub(/^ +/, "", $2); print $2; exit}')"
-echo "MEMORY_GB=$(awk '/MemTotal/ {printf \"%.0f\", $2/1024/1024}' /proc/meminfo)"
+echo "MEMORY_GB=$(awk '/MemTotal/ {printf "%.0f", $2/1024/1024}' /proc/meminfo)"
