@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, osConfig, ... }:
 
-{
+lib.mkIf (osConfig.programs.hyprland.enable or false) {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -127,30 +127,6 @@
       bindr = [
         "$mod, SUPER_L, exec, $ipc launcher toggle"
       ];
-
     };
-  };
-
-  # GTK settings
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita";
-      package = pkgs.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "macOS Light";
-      package = null;
-    };
-    font = {
-      name = "JetBrains Mono";
-      size = 11;
-    };
-  };
-
-  # Qt settings
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
   };
 }

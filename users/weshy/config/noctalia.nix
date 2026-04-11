@@ -1,6 +1,11 @@
-{ pkgs, config, ... }:
+{ pkgs, config, userConfig, lib, osConfig, ... }:
 
-{
+let
+  useNoctalia =
+    (osConfig.programs.hyprland.enable or false)
+    || (osConfig.programs.niri.enable or false);
+in
+lib.mkIf useNoctalia {
   # Configure noctalia-shell with all settings persisted from cool.json
   programs.noctalia-shell = {
     enable = true;
@@ -193,7 +198,7 @@
       };
       
       general = {
-        avatarImage = "/home/weshy/.face";
+        avatarImage = "${config.home.homeDirectory}/.face";
         dimmerOpacity = 0.2;
         showScreenCorners = false;
         forceBlackScreenCorners = false;
@@ -294,7 +299,7 @@
       wallpaper = {
         enabled = true;
         overviewEnabled = false;
-        directory = "/home/weshy/media/pics/wallpaper";
+        directory = userConfig.wallpaperDirectory or "${config.home.homeDirectory}/media/pics/wallpaper";
         monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
@@ -528,7 +533,7 @@
         visualizerType = "wave";
         spectrumMirrored = true;
         mprisBlacklist = [ ];
-        preferredPlayer = "";
+        preferredPlayer = "spotify";
         volumeFeedback = false;
         volumeFeedbackSoundFile = "";
       };

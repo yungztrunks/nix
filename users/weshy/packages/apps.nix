@@ -16,6 +16,7 @@ in
       vlc
       discord
       puddletag
+      qbittorrent
     ];
   };
 }
