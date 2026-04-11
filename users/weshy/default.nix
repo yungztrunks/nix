@@ -2,30 +2,15 @@
 
 {
   # Enable all home packages
-  my.home.cli.enable = true;
-  my.home.apps.enable = true;
-  my.home.development.enable = true;
-  my.home.gaming.enable = true;
-  my.home.windowsApps.enable = true;
+  # my.home.cli.enable = true;
+  # my.home.development.enable = true;
+  # my.home.gaming.enable = true;
+  # my.home.windowsApps.enable = true;
 
   imports = [
-    # System integration
-    ./system/session.nix
-    ./system/cursor.nix
-    
-    # Configuration
-    ./config/git.nix
-    ./config/kitty.nix
-    ./config/neovim.nix
-    ./config/noctalia.nix
-    ./config/lazygit.nix
-
-    # Packages
-    ./packages/cli.nix
-    ./packages/apps.nix
-    ./packages/development.nix
-    ./packages/gaming.nix
-    ./packages/windows-apps.nix
+    ./system/00default.nix
+    ./config/00default.nix
+    ./packages/00default.nix
   ];
 
   home.username = userConfig.username;
