@@ -18,6 +18,7 @@
     ./config/kitty.nix
     ./config/neovim.nix
     ./config/noctalia.nix
+    ./config/lazygit.nix
 
     # Packages
     ./packages/cli.nix
