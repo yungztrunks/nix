@@ -29,7 +29,7 @@ DEFAULT_DE=""
 
 if [[ -n "${DEFAULT_DE_INPUT}" ]]; then
   if ! DEFAULT_DE="$(normalize_de "${DEFAULT_DE_INPUT}")"; then
-    echo "Invalid desktop '${DEFAULT_DE_INPUT}'. Expected one of: hyprland, niri, kde"
+    echo "Invalid desktop '${DEFAULT_DE_INPUT}'. Expected one of: 'hyprland', 'niri', 'kde' as default desktop environment"
     exit 1
   fi
 fi
