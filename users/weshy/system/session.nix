@@ -8,7 +8,7 @@ let
   activeDesktopCount = builtins.length (builtins.filter (enabled: enabled) [
     hyprlandEnabled
     niriEnabled
-    kdeEnabled
+    # kdeEnabled
   ]);
 in
 {
