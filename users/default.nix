@@ -1,9 +1,11 @@
 { users ? { } }:
 
+{ config, ... }:
+
 {
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "hm-backup";
+  home-manager.backupFileExtension = "hm-backup-${config.system.nixos.label}";
   home-manager.sharedModules = [
     ({ lib, osConfig, ... }: {
       programs.noctalia-shell.enable = lib.mkDefault (
