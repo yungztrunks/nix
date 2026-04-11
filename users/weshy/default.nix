@@ -1,4 +1,4 @@
-{ ... }:
+{ userConfig, ... }:
 
 {
   # Enable all home packages
@@ -10,14 +10,15 @@
 
   imports = [
     # System integration
-    ./system/desktop.nix
+    ./system/session.nix
+    ./system/cursor.nix
     
     # Configuration
-    ./config/cursor.nix
     ./config/git.nix
     ./config/kitty.nix
-    ./config/fastfetch.nix
+    ./config/neovim.nix
     ./config/noctalia.nix
+    ./config/lazygit.nix
 
     # Packages
     ./packages/cli.nix
@@ -26,6 +27,9 @@
     ./packages/gaming.nix
     ./packages/windows-apps.nix
   ];
+
+  home.username = userConfig.username;
+  home.homeDirectory = "/home/${userConfig.username}";
 
   home.stateVersion = "25.11";
 

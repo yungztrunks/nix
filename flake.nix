@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -19,29 +19,51 @@
 
   outputs = { nixpkgs, home-manager, noctalia, ... }:
     let
+      users = {
+        weshy = {
+          fullName = "weshy";
+          gitName = "yungztrunks";
+          gitEmail = "95880628+yungztrunks@users.noreply.github.com";
+          homeModule = ./users/weshy/default.nix;
+          extraGroups = [ "networkmanager" "wheel" ];
+        };
+      };
+
       hosts = {
         aspire = {
           system = "x86_64-linux";
-          userNames = [ "weshy" ];
+          userRefs = [ "weshy" ];
         };
-
-        # Example ARM machine. Enable it once `./home/arm-laptop` exists.
-        # arm-laptop = {
-        #   enabled = false;
-        #   system = "aarch64-linux";
-        #   userNames = [ "weshy" ];
-        # };
       };
 
       enabledHosts = nixpkgs.lib.filterAttrs (_: hostCfg: hostCfg.enabled or true) hosts;
 
+      resolveUser = userName:
+        if builtins.hasAttr userName users then
+          (users.${userName} // {
+            username = users.${userName}.username or userName;
+          })
+        else
+          throw "Host references unknown user '${userName}'";
+
+      resolveHostUsers = hostCfg:
+        builtins.listToAttrs (map
+          (userName: {
+            name = userName;
+            value = resolveUser userName;
+          })
+          hostCfg.userRefs);
+
       mkHost = hostName: hostCfg:
+        let
+          hostUsers = resolveHostUsers hostCfg;
+        in
         nixpkgs.lib.nixosSystem {
           system = hostCfg.system;
           specialArgs = {
             inherit hostName;
-            hostPath = ./home/${hostName};
-            primaryUser = builtins.head hostCfg.userNames;
+            hostPath = ./hosts/${hostName};
+            inherit hostUsers;
           };
           modules = [
             ./configuration.nix
@@ -51,14 +73,34 @@
                 noctalia.homeModules.default
               ];
             }
-            (import ./home {
-              inherit hostName;
-              userNames = hostCfg.userNames;
+            (import ./users {
+              users = hostUsers;
             })
           ];
         };
     in
     {
+      devShells = {
+        x86_64-linux.default =
+          let
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          in
+          pkgs.mkShell {
+            packages = with pkgs; [
+              git
+              just
+              nixfmt-rfc-style
+              statix
+              deadnix
+              nil
+              nixd
+              python3
+              uv
+              neovim
+            ];
+          };
+      };
+
       nixosConfigurations = nixpkgs.lib.mapAttrs mkHost enabledHosts;
     };
 }
