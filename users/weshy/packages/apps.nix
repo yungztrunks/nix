@@ -9,7 +9,6 @@
     spotify
     vlc
     discord
-    puddletag
     qbittorrent
   ];
 }
