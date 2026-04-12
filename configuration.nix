@@ -104,6 +104,7 @@
       wl-clipboard
       kitty
       kdePackages.dolphin
+      kdePackages.ark
       #  wget
   ];
 

@@ -8,6 +8,9 @@
     eza
     btop
     yazi
-    # TODO: sowas wie 7zip
+    unrar
+    unzip
+    zip
+    p7zip
   ];
 }
