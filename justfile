@@ -73,3 +73,6 @@ quick-setup host user:
 
 setup-wizard:
     bash scripts/nixos-setup.sh
+
+garbagecollect:
+    bash scripts/garbagecollect.sh
