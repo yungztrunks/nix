@@ -2,14 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, hostName, hostPath, primaryUser, ... }:
+{ config, lib, pkgs, hostName, hostPath, hostUsers, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./hosts/default.nix
+      (hostPath + "/default.nix")
       (hostPath + "/hardware.nix")
-      ./modules/cli.nix
       ./modules/development.nix
+      ./modules/desktop-specialisations.nix
       ./modules/gaming.nix
       ./modules/windows-apps.nix
       ./modules/alias.nix
@@ -29,9 +31,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -50,14 +49,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session. test
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "de";
@@ -70,41 +61,37 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${primaryUser} = {
-    isNormalUser = true;
-    description = primaryUser;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
+  assertions = [
+    {
+      assertion = builtins.length (builtins.attrNames hostUsers) > 0;
+      message = "At least one user must be defined for this host in flake.nix.";
+    }
+  ];
+
+  users.users = lib.mapAttrs
+    (userName: userCfg: {
+      isNormalUser = true;
+      description = userCfg.fullName or userName;
+      extraGroups = userCfg.extraGroups or [ "networkmanager" "wheel" ];
+    })
+    hostUsers;
+
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  my.modules.cli.enable = true;
+  # Avoid abrupt DM restarts during switch; apply desktop stack changes via boot + reboot.
+  # systemd.services.display-manager.restartIfChanged = false;
+
   my.modules.develop.enable = true;
+  my.modules.desktopSpecialisations.enable = true;
   my.modules.gaming.enable = true;
   my.modules.windowsApps.enable = true;
   my.modules.shellAliases.enable = true;
@@ -115,7 +102,9 @@
       # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wayland-utils
       wl-clipboard
-      kdePackages.partitionmanager
+      kitty
+      kdePackages.dolphin
+      kdePackages.ark
       #  wget
   ];
 
