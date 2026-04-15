@@ -3,7 +3,7 @@
 will expand & improve the readme in the future, for now:
 
 ```
-nix run github:yungztrunks/nix#weshhy-hyprland
+nix run github:yungztrunks/nix#weshy-hyprland
 ```
 > *this should spawn a temporary desktop (like a vm) inside your current setup. you can use this to try it out (it won't install anything). this __should__ work ?*
 
