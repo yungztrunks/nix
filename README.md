@@ -1,6 +1,11 @@
-# nix os config
+# nixos config
 
 will expand & improve the readme in the future, for now:
+
+```
+nix run github:weshford/nix#weshhy-hyprland
+```
+> *this should spawn a temporary desktop (like a vm) inside your current setup. you can use this to try it out (it won't install anything). this __should__ work ?*
 
 current features:
 - somewhat easy to manage multiple hosts / users (with just commands)
