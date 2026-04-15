@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,8 +21,10 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, noctalia, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, noctalia, nix-index-database, ... }:
     let
+      lib = nixpkgs.lib;
+
       users = {
         weshy = {
           fullName = "weshy";
@@ -36,7 +42,8 @@
         };
       };
 
-      enabledHosts = nixpkgs.lib.filterAttrs (_: hostCfg: hostCfg.enabled or true) hosts;
+      enabledHosts = lib.filterAttrs (_: hostCfg: hostCfg.enabled or true) hosts;
+      hostSystems = lib.unique (map (hostCfg: hostCfg.system) (builtins.attrValues enabledHosts));
 
       resolveUser = userName:
         if builtins.hasAttr userName users then
@@ -58,7 +65,7 @@
         let
           hostUsers = resolveHostUsers hostCfg;
         in
-        nixpkgs.lib.nixosSystem {
+        lib.nixosSystem {
           system = hostCfg.system;
           specialArgs = {
             inherit hostName;
@@ -68,6 +75,7 @@
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.nix-index
             {
               home-manager.sharedModules = [
                 noctalia.homeModules.default
@@ -78,29 +86,134 @@
             })
           ];
         };
+
+      mkDevShell = system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.mkShell {
+          packages = with pkgs; [
+            git
+            just
+            nixfmt-rfc-style
+            statix
+            deadnix
+            nil
+            nixd
+            python3
+            uv
+            neovim
+          ];
+        };
+
+      mkRunTargets = system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          hyprlandPkg = hyprland.packages.${system}.default or pkgs.hyprland;
+          noctaliaPkg = if builtins.hasAttr "noctalia-shell" pkgs then pkgs."noctalia-shell" else null;
+
+          desktopPrelude = ''
+            export NIXOS_OZONE_WL=1
+            export XDG_SESSION_TYPE=wayland
+            export XDG_CURRENT_DESKTOP=weshy
+            if command -v noctalia-shell >/dev/null 2>&1; then
+              (noctalia-shell >/dev/null 2>&1 &) || true
+            fi
+          '';
+
+          mkDesktopLauncher = {
+            name,
+            command,
+            runtimeInputs ? [ ],
+          }:
+            pkgs.writeShellApplication {
+              inherit name;
+              runtimeInputs =
+                [ pkgs.kitty ]
+                ++ runtimeInputs
+                ++ lib.optional (noctaliaPkg != null) noctaliaPkg;
+              text = ''
+                ${desktopPrelude}
+                exec ${command} "$@"
+              '';
+            };
+
+          desktopLaunchers = {
+            "weshy-hyprland" = mkDesktopLauncher {
+              name = "weshy-hyprland";
+              command = "${hyprlandPkg}/bin/Hyprland";
+              runtimeInputs = [ hyprlandPkg ];
+            };
+            "weshy-niri" = mkDesktopLauncher {
+              name = "weshy-niri";
+              command = "${pkgs.niri}/bin/niri";
+              runtimeInputs = [ pkgs.niri ];
+            };
+          };
+
+          weshtty = pkgs.writeShellApplication {
+            name = "weshtty";
+            runtimeInputs = with pkgs; [
+              bashInteractive
+              kitty
+              neovim
+              git
+              lazygit
+              htop
+              fd
+              ripgrep
+              eza
+              btop
+              yazi
+              unzip
+              zip
+              p7zip
+              gh
+              uv
+              fnm
+              bun
+              direnv
+            ];
+            text = ''
+              export EDITOR=nvim
+              export VISUAL=nvim
+
+              if [[ -n "''${WAYLAND_DISPLAY:-}" || -n "''${DISPLAY:-}" ]]; then
+                exec kitty -e bash -lc 'exec bash -i'
+              fi
+
+              echo "No graphical session detected; starting interactive shell in current terminal."
+              exec bash -i
+            '';
+          };
+
+          mkApp = name: drv: {
+            type = "app";
+            program = "${drv}/bin/${name}";
+          };
+        in
+        {
+          packages = desktopLaunchers // {
+            weshtty = weshtty;
+          };
+
+          apps =
+            (builtins.mapAttrs mkApp desktopLaunchers)
+            // {
+              weshtty = mkApp "weshtty" weshtty;
+            };
+        };
+
+      runTargetsBySystem = lib.genAttrs hostSystems mkRunTargets;
     in
     {
-      devShells = {
-        x86_64-linux.default =
-          let
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          in
-          pkgs.mkShell {
-            packages = with pkgs; [
-              git
-              just
-              nixfmt-rfc-style
-              statix
-              deadnix
-              nil
-              nixd
-              python3
-              uv
-              neovim
-            ];
-          };
-      };
+      devShells = lib.genAttrs hostSystems (system: {
+        default = mkDevShell system;
+      });
 
-      nixosConfigurations = nixpkgs.lib.mapAttrs mkHost enabledHosts;
+      packages = lib.mapAttrs (_: targets: targets.packages) runTargetsBySystem;
+      apps = lib.mapAttrs (_: targets: targets.apps) runTargetsBySystem;
+
+      nixosConfigurations = lib.mapAttrs mkHost enabledHosts;
     };
 }

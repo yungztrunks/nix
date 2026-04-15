@@ -413,6 +413,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775970782,
+        "narHash": "sha256-7jt9Vpm48Yy5yAWigYpde+HxtYEpEuyzIQJF4VYehhk=",
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "rev": "bedba5989b04614fc598af9633033b95a937933f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1775710090,
@@ -500,6 +520,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia"
       }
