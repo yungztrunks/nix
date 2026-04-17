@@ -133,7 +133,7 @@ lib.mkIf useNoctalia {
               drawerEnable = true;
               hidePassive = false;
               id = "Tray";
-              pinned = []
+              pinned = [];
             }
             {
               defaultSettings = {
