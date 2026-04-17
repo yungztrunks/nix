@@ -122,7 +122,7 @@ lib.mkIf useNoctalia {
               colorName = "primary";
               hideWhenIdle = false;
               id = "AudioVisualizer";
-              width = 700;
+              width = 500;
             }
           ];
           right = [
