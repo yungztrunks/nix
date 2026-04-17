@@ -617,7 +617,7 @@ lib.mkIf useNoctalia {
         resumeScreenOffCommand = "";
         resumeLockCommand = "";
         resumeSuspendCommand = "";
-        customCommands = "[{\"name\":\"rc\",\"timeout\":300,\"command\":\"loginctl inhibit idle:handle-idle-hint & INHIBIT_PID=$!; hyprctl dispatch workspace 10 && sleep 0.2 && kitty --hold -e btop & kitty --hold -e fastfetch & kitty --hold -e yazi; kill $INHIBIT_PID 2>/dev/null\",\"resumeCommand\":\"notify-send \\\"back\\\"\"}]";
+        customCommands = "[{\"name\":\"rc\",\"timeout\":300,\"command\":\"LOCK=/tmp/noctalia-idle.lock; [ -e \\\"$LOCK\\\" ] && kill -0 $(cat \\\"$LOCK\\\") 2>/dev/null && exit; echo $$ > \\\"$LOCK\\\"; hyprctl dispatch workspace 10 && sleep 0.2; kitty --hold -e btop & kitty --hold -e fastfetch & kitty --hold -e yazi & wait; rm -f \\\"$LOCK\\\"\\n\",\"resumeCommand\":\"notify-send \\\"back\\\"\"}]";
       };
       
       desktopWidgets = {
