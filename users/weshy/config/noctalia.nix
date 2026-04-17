@@ -338,7 +338,14 @@ lib.mkIf useNoctalia {
         wallpaperChangeMode = "random";
         randomIntervalSec = 300;
         transitionDuration = 2000;
-        transitionType = [ "fade" "disc" "stripes" "wipe" "pixelate" "honeycomb" ];
+        transitionType = [
+          # "fade"
+          # "disc"
+          "stripes"
+          # "wipe"
+          "pixelate"
+          # "honeycomb"
+        ];
         skipStartupTransition = false;
         transitionEdgeSmoothness = 0.05;
         panelPosition = "center";
