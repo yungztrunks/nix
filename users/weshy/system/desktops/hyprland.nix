@@ -91,6 +91,7 @@ lib.mkIf (osConfig.programs.hyprland.enable or false) {
         "$mod, L, exec, $ipc lockScreen lock"
         "$mod, R, exec, $ipc launcher command"
         "ALT, TAB, exec, $ipc launcher windows"
+        ", XF86PowerOff, exec, $ipc sessionMenu toggle"
 
         # wichtig
         "$mod, E, exec, dolphin"

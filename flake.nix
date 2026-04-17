@@ -19,9 +19,13 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, noctalia, nix-index-database, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, noctalia, nix-index-database, helium, ... }:
     let
       lib = nixpkgs.lib;
 
@@ -74,6 +78,13 @@
           };
           modules = [
             ./configuration.nix
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  helium = helium.packages.${prev.system}.default;
+                })
+              ];
+            }
             home-manager.nixosModules.home-manager
             nix-index-database.nixosModules.nix-index
             {
