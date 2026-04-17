@@ -12,5 +12,6 @@
     unzip
     zip
     p7zip
+    ffmpeg
   ];
 }
