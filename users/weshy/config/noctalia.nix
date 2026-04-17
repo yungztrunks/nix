@@ -2,11 +2,26 @@
 
 let
   useNoctalia =
-    (osConfig.programs.hyprland.enable or false)
-    || (osConfig.programs.niri.enable or false);
+    (osConfig.programs.hyprland.enable or false) || (osConfig.programs.niri.enable or false);
 in
+
 lib.mkIf useNoctalia {
-  # Configure noctalia-shell with all settings persisted from cool.json
+
+  home.packages = with pkgs; [
+    # the plugin "screen toolkit" needs these
+    # ffmpeg, curl too but ffmpeg for example is in my cli.nix
+    grim
+    slurp
+    wl-clipboard
+    tesseract
+    imagemagick
+    zbar
+    jq
+    wl-screenrec #wf-recorder for fallback
+    gifski
+    translate-shell
+  ];
+
   programs.noctalia-shell = {
     enable = true;
     settings = {
