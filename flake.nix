@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # temporary! until a patch for hyprplugins is available; currently builds fail bzw. dependencies are wrong
+    nixpkgs-hyprland-plugins-fix.url = "github:NixOS/nixpkgs/231ea250eee538df1b939ca7899e0e80e7bcb08c";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +27,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, noctalia, nix-index-database, helium, ... }:
+  outputs = { nixpkgs, nixpkgs-hyprland-plugins-fix, home-manager, hyprland, noctalia, nix-index-database, helium, ... }:
     let
       lib = nixpkgs.lib;
 
@@ -68,6 +70,7 @@
       mkHost = hostName: hostCfg:
         let
           hostUsers = resolveHostUsers hostCfg;
+          hyprbarsPluginPackage = nixpkgs-hyprland-plugins-fix.legacyPackages.${hostCfg.system}.hyprlandPlugins.hyprbars;
         in
         lib.nixosSystem {
           system = hostCfg.system;
@@ -94,6 +97,7 @@
             }
             (import ./users {
               users = hostUsers;
+              inherit hyprbarsPluginPackage;
             })
           ];
         };

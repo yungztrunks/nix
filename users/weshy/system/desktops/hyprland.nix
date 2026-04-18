@@ -1,8 +1,11 @@
-{ config, lib, osConfig, ... }:
+{ config, lib, osConfig, hyprbarsPluginPackage, ... }: # temporary as well 
 
 lib.mkIf (osConfig.programs.hyprland.enable or false) {
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [
+      hyprbarsPluginPackage
+    ];
     settings = {
       env = [
         "XCURSOR_SIZE,24"
@@ -44,6 +47,29 @@ lib.mkIf (osConfig.programs.hyprland.enable or false) {
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+      };
+
+      plugin = {
+        hyprbars = {
+          bar_height = 30;
+          bar_title_enabled = true;
+          bar_text_align = "center";
+          bar_text_size = 11;
+          bar_buttons_alignment = "right";
+          bar_part_of_window = true;
+          bar_precedence_over_border = true;
+          bar_padding = 8;
+          bar_button_padding = 6;
+          bar_color = "0x88f5f5f7";
+          "col.text" = "0xff1c1c1e";
+          icon_on_hover = false;
+          "hyprbars-button" = [
+            "rgb(ff5f57),13,,hyprctl dispatch killactive,rgb(1c1c1e)"
+            "rgb(febc2e),13,,hyprctl dispatch fullscreen 1,rgb(1c1c1e)"
+            "rgb(28c840),13,,hyprctl dispatch togglefloating; hyprctl dispatch resizeactive exact 88% 88%,rgb(1c1c1e)"
+          ];
+          on_double_click = "hyprctl dispatch fullscreen 1";
+        };
       };
 
       exec-once = [
