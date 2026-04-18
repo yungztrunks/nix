@@ -470,6 +470,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-hyprland-plugins-fix": {
+      "locked": {
+        "lastModified": 1776158933,
+        "narHash": "sha256-9FfmPl6gqeK8A8e4wAMKpkzqUqlebJQ68A0xaV3Feio=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "231ea250eee538df1b939ca7899e0e80e7bcb08c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "231ea250eee538df1b939ca7899e0e80e7bcb08c",
+        "type": "github"
+      }
+    },
     "noctalia": {
       "inputs": {
         "nixpkgs": [
@@ -544,6 +560,7 @@
         "hyprland": "hyprland",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-hyprland-plugins-fix": "nixpkgs-hyprland-plugins-fix",
         "noctalia": "noctalia"
       }
     },
