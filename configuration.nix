@@ -105,6 +105,7 @@
       kitty
       kdePackages.dolphin
       kdePackages.ark
+      kdePackages.partitionmanager
       #  wget
   ];
 
