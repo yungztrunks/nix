@@ -1,4 +1,4 @@
-{ users ? { }, hyprbarsPluginPackage ? null }: temporary
+{ users ? { }, hyprbarsPluginPackage ? null }: # temporary
 
 { config, ... }:
 
