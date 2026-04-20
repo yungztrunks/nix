@@ -12,6 +12,32 @@ let
 
       home_dir="$HOME"
       media_root="/run/media/$USER"
+      directory_marker="
+      directory_icon="folder-violet"
+
+      ensure_kde_directory_style() {
+        local drive_root="$1"
+        local directory_file="$drive_root/.directory"
+        local existing_marker=""
+
+        if [[ ! -w "$drive_root" ]]; then
+          return
+        fi
+
+        if [[ -f "$directory_file" ]]; then
+          existing_marker="$(head -n 1 "$directory_file" || true)"
+
+          if [[ "$existing_marker" != "$directory_marker" ]]; then
+            return
+          fi
+        fi
+
+        cat >"$directory_file" <<EOF
+$directory_marker
+[Desktop Entry]
+Icon=$directory_icon
+EOF
+      }
 
       shopt -s nullglob
 
@@ -38,6 +64,8 @@ let
         if (( index >= ''${#letters[@]} )); then
           break
         fi
+
+        ensure_kde_directory_style "$mount_path" || true
 
         link_path="$home_dir/''${letters[$index]}:"
 
