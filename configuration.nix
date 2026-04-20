@@ -61,6 +61,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
