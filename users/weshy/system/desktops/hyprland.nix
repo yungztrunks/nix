@@ -27,10 +27,10 @@ lib.mkIf (osConfig.programs.hyprland.enable or false) {
       };
 
       input = {
-        kb_layout = "de";
+        kb_layout = "de,us";
         kb_variant = "";
         kb_model = "";
-        kb_options = "";
+        kb_options = "grp:alt_shift_toggle";
         kb_rules = "";
         follow_mouse = 1;
         sensitivity = 0.0;
