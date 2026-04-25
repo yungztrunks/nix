@@ -431,7 +431,7 @@ lib.mkIf useNoctalia {
           { enabled = true; id = "audio-card"; }
           { enabled = true; id = "brightness-card"; }
           { enabled = true; id = "weather-card"; }
-          { enabled = false; id = "media-sysmon-card"; }
+          { enabled = true; id = "media-sysmon-card"; }
         ];
       };
       
