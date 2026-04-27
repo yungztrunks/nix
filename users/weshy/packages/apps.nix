@@ -10,5 +10,6 @@
     vlc
     discord
     qbittorrent
+    qdirstat
   ];
 }
