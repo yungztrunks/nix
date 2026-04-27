@@ -5,5 +5,6 @@
     ./session.nix
     ./cursor.nix
     ./mounts.nix
+    ./rclone.nix
   ];
 }
