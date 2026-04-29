@@ -84,7 +84,7 @@ lib.mkIf (osConfig.programs.hyprland.enable or false) {
         "$mod, T, exec, $terminal"
         "$mod, C, killactive,"
         "$mod SHIFT ALT, L, exit,"
-        "$mod, V, togglefloating,"
+        "$mod SHIFT, V, togglefloating,"
         "$mod, F, fullscreen,"
 
         # Workspace keybinds
@@ -112,7 +112,7 @@ lib.mkIf (osConfig.programs.hyprland.enable or false) {
 
         # noctlia shell things
         "$mod SHIFT, H, exec, $ipc wallpaper toggle"
-        "$mod SHIFT, V, exec, $ipc launcher clipboard"
+        "$mod, V, exec, $ipc launcher clipboard"
         "$mod, I, exec, $ipc settings toggle"
         "$mod, L, exec, $ipc lockScreen lock"
         "$mod, R, exec, $ipc launcher command"
