@@ -13,6 +13,10 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +31,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-hyprland-plugins-fix, home-manager, hyprland, noctalia, nix-index-database, helium, ... }:
+  outputs = { nixpkgs, nixpkgs-hyprland-plugins-fix, home-manager, hyprland, noctalia, nix-index-database, helium, sops-nix, ... }:
     let
       lib = nixpkgs.lib;
 
@@ -81,6 +85,7 @@
           };
           modules = [
             ./configuration.nix
+            sops-nix.nixosModules.sops
             {
               nixpkgs.overlays = [
                 (final: prev: {
@@ -93,6 +98,7 @@
             {
               home-manager.sharedModules = [
                 noctalia.homeModules.default
+                sops-nix.homeManagerModules.sops
               ];
             }
             (import ./users {
