@@ -106,7 +106,7 @@
       wayland-utils
       wl-clipboard
       kitty
-      kdePackages.dolphin
+      xfce.thunar
       kdePackages.ark
       kdePackages.partitionmanager
       kdePackages.kate

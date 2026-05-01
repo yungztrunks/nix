@@ -7,5 +7,6 @@
     ./secrets.nix
     ./mounts.nix
     ./rclone.nix
+    ./defaults.nix
   ];
 }
