@@ -8,5 +8,7 @@
     ./neovim.nix
     ./noctalia.nix
     ./lazygit.nix
+    ./btop.nix
+    ./fastfetch.nix
   ];
 }
