@@ -4,7 +4,7 @@
   programs.kitty = {
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 11.5;
+      size = 10;
     };
     settings = {
       background_opacity = "0.90";
@@ -20,6 +20,8 @@
       selection_background = "#6E5191";
       active_border_color = "#6E5191";
       inactive_border_color = "#3D3352";
+      scrollback_lines = 5000;
+      copy_on_select = true;
     };
   };
 }
