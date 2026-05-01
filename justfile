@@ -81,16 +81,16 @@ build-iso host:
 check-prerequisites:
     bash scripts/check-prerequisites.sh
 
-# SOPS: generate age key
-sops-keygen:
+# SOPS: generate an age key under ~/.config/sops/age/keys.txt
+sops-generate-agekey:
     mkdir -p ~/.config/sops/age
     nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
 
-# SOPS: show public key
-sops-pubkey:
+# SOPS: show the public key
+sops-show-publickey:
     nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
 
-# SOPS: edit secrets file
+# SOPS: edit your secrets file
 sops-edit:
     nix shell nixpkgs#sops -c sops secrets/secrets.yaml
 
