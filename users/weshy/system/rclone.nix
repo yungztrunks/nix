@@ -4,6 +4,7 @@ let
   homeDir = config.home.homeDirectory;
   rcloneConfig = "${homeDir}/.config/rclone/rclone.conf";
   mountPoint = "${homeDir}/D:";
+  passFile = config.sops.secrets."rclone/archived_dav_pass".path;
 in
 {
   home.packages = [
@@ -22,7 +23,7 @@ in
       Environment = [ "RCLONE_CONFIG=${rcloneConfig}" ];
       ExecStartPre = [
         "${pkgs.coreutils}/bin/mkdir -p ${mountPoint}"
-        "${pkgs.rclone}/bin/rclone config create archived-dav webdav url=http://192.168.2.229:3923 vendor=owncloud pacer_min_sleep=0.01ms user=k pass=hunter2"
+        "${pkgs.bash}/bin/bash -c '${pkgs.rclone}/bin/rclone config create archived-dav webdav url=http://192.168.2.229:3923 vendor=owncloud pacer_min_sleep=0.01ms user=k pass=\"$(cat ${passFile})\"'"
       ];
       ExecStart = "${pkgs.rclone}/bin/rclone mount archived-dav: ${mountPoint} --vfs-cache-mode writes --dir-cache-time 5s";
       ExecStop = "${pkgs.fuse3}/bin/fusermount3 -u ${mountPoint}";

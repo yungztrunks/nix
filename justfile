@@ -81,6 +81,23 @@ build-iso host:
 check-prerequisites:
     bash scripts/check-prerequisites.sh
 
+# SOPS: generate age key
+sops-keygen:
+    mkdir -p ~/.config/sops/age
+    nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
+
+# SOPS: show public key
+sops-pubkey:
+    nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
+
+# SOPS: edit secrets file
+sops-edit:
+    nix shell nixpkgs#sops -c sops secrets/secrets.yaml
+
+# SOPS: re-encrypt with updated keys
+sops-updatekeys:
+    nix shell nixpkgs#sops -c sops updatekeys secrets/secrets.yaml
+
 # Detect hardware profile summary.
 detect-hardware:
     bash scripts/detect-hardware.sh
