@@ -5,6 +5,8 @@
   # Optional future host-local GPU config can be imported from ./gpu.nix.
 
   # Build-time desktop boot entries.
+  # Desktop Environment / Window Manager build toggle
+  # default values in desktop-specialisations.nix are overwritten here
   my.modules.desktopSpecialisations = {
     buildHyprland = true;
     buildNiri = true;

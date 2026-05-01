@@ -12,6 +12,9 @@ in
   options.my.modules.desktopSpecialisations = {
     enable = lib.mkEnableOption "desktop specialisations";
 
+    # defaults in this module are fallbacks only
+    # host values in hosts/thehost123/default.nix decide what is actually built
+
     baseDesktop = lib.mkOption {
       type = lib.types.enum [ "hyprland" "niri" "kde" ];
       default = "hyprland";

@@ -3,6 +3,8 @@
 {
   # Host-specific desktop selection controls.
   my.modules.desktopSpecialisations = {
+    # Desktop Environment / Window Manager build toggle
+    # default values in desktop-specialisations.nix are overwritten here
     baseDesktop = "hyprland";
     buildHyprland = true;
     buildNiri = false;
