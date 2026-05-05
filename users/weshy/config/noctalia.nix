@@ -383,7 +383,7 @@ lib.mkIf useNoctalia {
         position = "center";
         pinnedApps = [ ];
         sortByMostUsed = true;
-        terminalCommand = "alacritty -e";
+        terminalCommand = "kitty -e";
         customLaunchPrefixEnabled = false;
         customLaunchPrefix = "";
         viewMode = "list";
