@@ -1,4 +1,4 @@
-{ userConfig, hyprbarsPluginPackage ? null, spicetifyPkgs ? null }: # temporary
+{ userConfig, hyprbarsPluginPackage ? null, spicetifyPkgs ? null, appleFontsPkgs ? null }: # temporary
 
 { config, ... }:
 
@@ -37,5 +37,6 @@
     _module.args.userConfig = userConfig;
     _module.args.hyprbarsPluginPackage = hyprbarsPluginPackage; # temporary
     _module.args.spicetifyPkgs = spicetifyPkgs;
+    _module.args.appleFontsPkgs = appleFontsPkgs;
   };
 }

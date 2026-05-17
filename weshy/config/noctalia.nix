@@ -274,8 +274,8 @@ lib.mkIf useNoctalia {
       };
       
       ui = {
-        fontDefault = "Sans Serif";
-        fontFixed = "monospace";
+        fontDefault = "SF Pro Text";
+        fontFixed = "SF Mono";
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
