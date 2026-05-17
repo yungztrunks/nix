@@ -29,9 +29,13 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    apple-fonts-nix = {
+      url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-hyprland-plugins-fix, home-manager, spicetify-nix, noctalia, nix-index-database, helium, sops-nix, ... }:
+  outputs = { nixpkgs, nixpkgs-hyprland-plugins-fix, home-manager, spicetify-nix, noctalia, nix-index-database, helium, sops-nix, apple-fonts-nix, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -100,6 +104,7 @@
           (import ./weshy/home.nix {
             inherit userConfig hyprbarsPluginPackage;
             spicetifyPkgs = spicetify-nix.legacyPackages.${system};
+            appleFontsPkgs = apple-fonts-nix.packages.${system};
           })
         ];
       };
