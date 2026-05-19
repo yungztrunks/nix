@@ -71,17 +71,17 @@ lib.mkIf useNoctalia {
               };
               id = "plugin:clipper";
             }
-            {
-              defaultSettings = {
-                colorHistory = [ ];
-                detectedRecorder = "";
-                installedLangs = [ "eng" ];
-                paletteColors = [ ];
-                selectedOcrLang = "eng";
-                transAvailable = false;
-              };
-              id = "plugin:screen-toolkit";
-            }
+            # {
+            #   defaultSettings = {
+            #     colorHistory = [ ];
+            #     detectedRecorder = "";
+            #     installedLangs = [ "eng" ];
+            #     paletteColors = [ ];
+            #     selectedOcrLang = "eng";
+            #     transAvailable = false;
+            #   };
+            #   id = "plugin:screen-toolkit";
+            # }
             {
               defaultSettings = {
                 autoMount = false;
